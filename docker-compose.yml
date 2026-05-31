@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: dataflow
+      POSTGRES_PASSWORD: dataflow
+      POSTGRES_DB: dataflow
+    ports:
+      - "5432:5432"
+    volumes:
+      # Runs once on first boot to create the book-keeping tables.
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dataflow -d dataflow"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://dataflow:dataflow@db:5432/dataflow
+      # Source data lives in real S3. Provide a seeded bucket and AWS creds via
+      # the host environment (these pass through; empty falls back to nothing).
+      S3_BUCKET: ${S3_BUCKET:-dataflow-sources}
+      AWS_REGION: ${AWS_REGION:-us-west-2}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy

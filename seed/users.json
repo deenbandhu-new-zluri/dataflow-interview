@@ -1,0 +1,7 @@
+[
+  {"user_id": "u1", "plan": "pro", "country": "US"},
+  {"user_id": "u2", "plan": "free", "country": "US"},
+  {"user_id": "u3", "plan": "pro", "country": "IN"},
+  {"user_id": "u4", "plan": "free", "country": "IN"},
+  {"user_id": "u5", "plan": "enterprise", "country": "DE"}
+]

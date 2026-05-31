@@ -1,0 +1,10 @@
+[
+  {"id": 1, "user_id": "u1", "country": "US", "event_type": "purchase", "amount": 120, "ts": "2026-05-01"},
+  {"id": 2, "user_id": "u2", "country": "US", "event_type": "view", "amount": 0, "ts": "2026-05-01"},
+  {"id": 3, "user_id": "u3", "country": "IN", "event_type": "purchase", "amount": 40, "ts": "2026-05-02"},
+  {"id": 4, "user_id": "u1", "country": "US", "event_type": "purchase", "amount": 80, "ts": "2026-05-02"},
+  {"id": 5, "user_id": "u4", "country": "IN", "event_type": "view", "amount": 0, "ts": "2026-05-03"},
+  {"id": 6, "user_id": "u5", "country": "DE", "event_type": "purchase", "amount": 200, "ts": "2026-05-03"},
+  {"id": 7, "user_id": "u2", "country": "US", "event_type": "refund", "amount": -30, "ts": "2026-05-04"},
+  {"id": 8, "user_id": "u3", "country": "IN", "event_type": "purchase", "amount": 60, "ts": "2026-05-04"}
+]
